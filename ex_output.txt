@@ -1,0 +1,40 @@
+namespace
+#l;kajsdf
+lksjdf
+
+
+
+
+
+
+
+ns nop
+# Define the namespace
+namespace  cars
+
+# Define expiry just above the set of redirects for which it applies
+
+# Environments
+#env  test  testwww.volvocars.com
+#env  qa  qawww.volvocars.com
+#env  prod  www.volvocars.com
+
+# Specific redirections
+expiry 2022-10-01
+
+## cars namespace
+
+
+## coches namespace
+
+## modeles namespace
+
+
+## modelle namespace
+
+
+## modelos namespace
+
+
+## mobile namespace
+

@@ -1,0 +1,48 @@
+body {
+    border: 0px solid black;
+    background-color: white;
+    padding-top: 100px;
+    padding-right: 300px;
+    padding-bottom: 100px;
+    padding-left: 300px;
+    font-size: 1.5em;
+    line-height: 1.6;
+    font-weight: 400;
+    font-family: Raleway,HelveticaNeue,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #222;
+  }
+  h1{
+    margin-bottom: 20px;
+  }
+  label, select {
+    display: block;
+}
+  form>div{
+    margin-bottom: 20px;
+  }
+
+.custom-Button{
+    width: 100px !important;
+    padding: 10px;
+}
+
+#SelectMarket{
+    padding: 10px;
+    width:100%;
+}
+
+.required:before {
+    color: #c00;
+    content: '*';
+    font-size: 3rem;
+    line-height: 0;
+    position: relative;
+    top: 1rem;
+}
+
+.requireds:before {
+    font-size: 3rem;
+    line-height: 0;
+    position: relative;
+    top: 1rem;
+}
