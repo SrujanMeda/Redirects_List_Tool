@@ -6,6 +6,7 @@ import urllib.parse
 import sys
 
 app = Flask(__name__)
+NO_COUNTRY_FILTER = False # Set to True if you want all countries
 
 @app.route('/')
 def home_page():
@@ -16,14 +17,16 @@ def process_data():
     form = request.form
     country = form["country"]
     files = request.files.getlist("csvFile")
-    # print(country)
+    # if(country.strip() == "NOCONT"):
+    #     global NO_COUNTRY_FILTER
+    #     NO_COUNTRY_FILTER = True
     # print(files)
-    filter_data(files)
-    return "<h1> Thanks!!! </h1>"
+    filter_data(files,country)
+    return send_from_directory(".","output.csv")
 
 
 
-def filter_data(files):
+def filter_data(files,country):
     open("output.txt","w").close()
     open("ex_output.txt","w").close()
     output_file = open("output.txt", "a")
@@ -38,7 +41,8 @@ def filter_data(files):
                     line= line.strip()
                     line = line.replace('\t', ' ')
                     line = ' '.join(line.split())+"\n"
-                    output += line
+                    if(NO_COUNTRY_FILTER or country_check(line,country) ):
+                        output += line
                 else:
                     exception_output+= line
 
@@ -50,7 +54,7 @@ def filter_data(files):
     for file in files:
         os.remove(file.filename)
     
-    convert_txt_to_csv("output.txt")
+    return convert_txt_to_csv("output.txt")
     
     
 
@@ -66,6 +70,17 @@ def convert_txt_to_csv(txt_filename):
             writer.writerows(lines)
     #return render_template("DownloadAndPreviewPage.html",data={"output.csv":csvFileName})
 
+def country_check(line,country):
+    code = line.split("/")[1]
+    codeList = []
+    if("-" in code):
+        code = code.split("-")[1]
+    if("," in code):
+        codeList = code.split(",")
+    country = country.lower()
+    if(country == code or country in codeList):
+        return True
+    return False
 
 def error_msg(msg):
     return '<b style="color: red">'+msg+'</b>'
